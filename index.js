@@ -23,7 +23,7 @@ async function dostuff(){
       finalpdf = await pdfutil.generatePdf(profile, reasons, pdfBase)
       // upstream this is done by parcel's file-loader,
       //  thanks crisbal for keeping me sane
-      fs.appendFileSync('final.pdf', new Buffer.from(finalpdf));
+      fs.appendFileSync('attestation.pdf', new Buffer.from(finalpdf));
       console.log("PDF generated")
     } catch (err) {
       console.error(err)
