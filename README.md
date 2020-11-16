@@ -20,9 +20,9 @@ Open the conversation with the bot and send a JSON string in this form:
   "firstname": "Antuzzo",
   "lastname": "surname",
   "birthday": "01/01/1991",
-  "placeofbirth": "Wien",
-  "address": "palceholder",
-  "city": "placeholder",
+  "placeofbirth": "Wien, Autriche",
+  "address": "16 Grande Rue",
+  "city": "Ville neuve",
   "zipcode": "01234",
   "datesortie": "13/11/2020",
   "heuresortie": "18:11",
@@ -73,3 +73,5 @@ fs.appendFileSync('attestation.pdf', new Buffer.from(attpdf));
 ### Acknowledgements
 
 Based on: https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020, https://media.interieur.gouv.fr/deplacement-covid-19/
+
+English reasons explanations were taken from the official English version of the attestation, accessed from https://www.interieur.gouv.fr/Actualites/L-actu-du-Ministere/Attestations-de-deplacement on 2020/11/16
