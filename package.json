@@ -11,5 +11,8 @@
   "devDependencies": {
     "pdf-lib": "^1.11.2",
     "qrcode": "^1.4.4"
+  },
+  "dependencies": {
+    "telegraf": "^3.38.0"
   }
 }

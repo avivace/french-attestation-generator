@@ -15,19 +15,20 @@ profile = {
 
 reasons = "sport_animaux"
 
-async function dostuff(){
-    try {
+async function generateAtt(profile, reasons){
+
       // Don't specify encoding so we get a buffer
       const pdfBase = fs.readFileSync('./src/certificate.pdf')
       console.log("PDF template loaded")
       finalpdf = await pdfutil.generatePdf(profile, reasons, pdfBase)
-      // upstream this is done by parcel's file-loader,
+      // upstream this is done by parcel's "implicit" file-loader,
       //  thanks crisbal for keeping me sane
-      fs.appendFileSync('attestation.pdf', new Buffer.from(finalpdf));
+      await fs.appendFileSync('attestation.pdf', new Buffer.from(finalpdf));
       console.log("PDF generated")
-    } catch (err) {
-      console.error(err)
-    }
+      return new Buffer.from(finalpdf)
+      
 }
 
-dostuff()
+exports.generateAtt = generateAtt
+
+//console.log(generateAtt())
