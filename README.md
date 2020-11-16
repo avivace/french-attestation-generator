@@ -1,8 +1,8 @@
-## *Attestation de déplacement dérogatoire* telegram bot generator
+## *Attestation de déplacement dérogatoire* telegram bot
 
 A bot to generate Attestation de déplacement dérogatoire documents on the go, just by sending a telegram message.
 
-**Work In Progress Notice**: the bot UX is still raw and unforgiving. It expects a well formatted JSON strinfied object breaking on syntax or missing keys.
+**Work In Progress Notice**: the bot UX is still raw and unforgiving. It expects a well formatted JSON stringified object and will break on syntax errors or missing keys.
 
 Install dependencies and run the Telegram bot:
 
@@ -15,7 +15,7 @@ You can get a bot token talking with @BotFather on Telegram.
 
 Open the conversation with the bot and send a JSON string in this form:
 
-```
+```javascript
 {
   "firstname": "Antuzzo",
   "lastname": "surname",
