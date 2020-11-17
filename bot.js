@@ -70,12 +70,14 @@ bot.command('reasons', ctx => {
             }
         }
         ctx.reply(
-            reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
+            reasons.length ? reasons : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
         );        
     } catch (err) {
         ctx.reply('Error '+ err.message);
     }
-
+    ctx.reply(
+        reasons.length ? reasons : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfreasons).join(', ')}`
+    );
 });
 
 bot.command('template', ctx => {
