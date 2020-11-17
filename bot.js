@@ -47,26 +47,31 @@ bot.help(ctx => {
 });
 
 bot.command('reasons', ctx => {
-    const args = ctx.message.text
-        .split(' ')
-        .slice(1)
-        .filter(arg => arg !== '');
-    const reasons = [];
-    if (!args.length) {
-        for (const reason in Object.keys(gen.tableOfreasons)) {
-            reasons.push(`${reason}: ${gen.tableOfReasons[reason]}`);
+    try {
+        const args = ctx.message.text
+            .split(' ')
+            .slice(1)
+            .filter(arg => arg !== '');
+        const reasons = [];
+        if (!args.length) {
+            for (const reason in Object.keys(gen.tableOfreasons)) {
+                reasons.push(`${reason}: ${gen.tableOfReasons[reason]}`);
+            }
+            ctx.reply(reasons.join('\n'));
+            return;
         }
-        ctx.reply(reasons.join('\n'));
-        return;
-    }
-    for (const arg in args) {
-        if (gen.tableOfReasons.hasOwnProperty(arg.toLowerCase())) {
-            reasons.push(`${arg}: ${gen.tableOfReasons[arg]}`);
+        for (const arg in args) {
+            if (gen.tableOfReasons.hasOwnProperty(arg.toLowerCase())) {
+                reasons.push(`${arg}: ${gen.tableOfReasons[arg]}`);
+            }
         }
+        ctx.reply(
+            reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfreasons).join(', ')}`
+        );        
+    } catch (err) {
+        ctx.reply('Error'+ err.message);
     }
-    ctx.reply(
-        reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfreasons).join(', ')}`
-    );
+
 });
 
 bot.command('template', ctx => {
