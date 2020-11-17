@@ -84,12 +84,13 @@ bot.command('template', ctx => {
 });
 
 bot.on('message', ctx => {
-    obj = null;
+    let obj = null;
+    let reasons;
 
     console.log(ctx.message.text);
     try {
-        const obj = JSON.parse(ctx.message.text);
-        const { reasons } = obj;
+        obj = JSON.parse(ctx.message.text);
+        reasons = obj.reasons;
         delete obj.reasons;
         ctx.reply('Looks like your JSON is valid. Generating PDF...');
     } catch (err) {
@@ -101,7 +102,7 @@ bot.on('message', ctx => {
     pdfBuff = gen.generateAtt(obj, reasons);
 
     pdfBuff
-        .then(function (result, err) {
+        .then((result, err) => {
             console.log(result, err);
             ctx.replyWithDocument({
                 filename: 'attestation.pdf',
