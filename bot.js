@@ -5,7 +5,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.start(ctx =>
     ctx.reply(
-        "Welcome! This bot will generate an attestation PDF (Q4 2020) for you!\n\nDisclaimer: this is an unofficial tool, we use a modified version of the software running on the official government website, but we waive any responsibility on the generated PDF. Please always double check them. By using this bot functionalities you acknowledge that the generated PDF are your and only yours responsibility. \n\nPrivacy notice: we don't log any information and the generated PDF are not saved on our machines but directly uploaded to Telegram. Messages and PDF uploaded in this conversation are anyway subject to Telegram terms of service and privacy terms. \n\nIf you agree with this, send /help to see how to use the bot.\n\nThis software is open source and you can easily self host your instance of this bot. You are welcome to send contributions, feedback and bug reports: https://github.com/avivace/french-attestation-generator"
+        `Welcome! This bot will generate an attestation PDF (Q4 2020) for you!\n\nDisclaimer: this is an unofficial tool, we use a modified version of the software running on the official government website, but we waive any responsibility on the generated PDF. Please always double check them. By using this bot functionalities you acknowledge that the generated PDFs are your responsibility and only yours.\n\nPrivacy notice: we don't log any information and the generated PDF are not saved on our machines but directly uploaded to Telegram. Messages and PDF uploaded in this conversation are anyway subject to Telegram terms of service and privacy terms.\n\nIf you agree with this, send /help to see how to use the bot.\n\nThis software is open source and you can easily self host your instance of this bot. You are welcome to send contributions, feedback and bug reports: https://github.com/avivace/french-attestation-generator`
     )
 );
 
@@ -64,18 +64,18 @@ bot.command('reasons', ctx => {
             Object.keys(gen.tableOfReasons).forEach(reason => {
                 reasons.push(`${reason}: ${gen.tableOfReasons[reason]}`);
             });
-            ctx.reply(reasons.join('\n'));
-            return;
         }
-        for (const i in args) {
-            let arg = args[i];
-            if (gen.tableOfReasons.hasOwnProperty(arg.toLowerCase())) {
+        args.forEach(argument => {
+            const arg = argument.toLowerCase();
+            if (gen.tableOfReasons.hasOwnProperty(arg)) {
                 reasons.push(`${arg}: ${gen.tableOfReasons[arg]}`);
             }
-        }
+        });
         ctx.reply(
-            reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
-        );        
+            reasons.length
+                ? reasons.join('\n\n')
+                : `Invalid reason(s). Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
+        );
     } catch (err) {
         ctx.reply('Error ' + err.message);
     }
