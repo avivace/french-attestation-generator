@@ -48,7 +48,7 @@ bot.help(ctx => {
 
 bot.command('reasons', ctx => {
     try {
-        console.log(ctx.message.text)
+
         const args = ctx.message.text
             .split(' ')
             .slice(1)
@@ -96,7 +96,6 @@ bot.on('message', ctx => {
     let obj = null;
     let reasons;
 
-    console.log(ctx.message.text);
     try {
         obj = JSON.parse(ctx.message.text);
         reasons = obj.reasons;
@@ -112,7 +111,6 @@ bot.on('message', ctx => {
 
     pdfBuff
         .then((result, err) => {
-            console.log(result, err);
             ctx.replyWithDocument({
                 filename: 'attestation.pdf',
                 source: result

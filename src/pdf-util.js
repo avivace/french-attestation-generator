@@ -14,8 +14,6 @@ const ys = {
 }
 
 async function generatePdf (profile, reasons, pdfBase) {
-  console.log("generating pdf with profile:",profile,"\nreasons:", reasons)
-
   const creationInstant = new Date()
   const creationDate = creationInstant.toLocaleDateString('fr-FR')
   const creationHour = creationInstant
