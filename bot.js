@@ -5,24 +5,14 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.start(ctx =>
     ctx.reply(
-        "Welcome! This bot will generate an attestation PDF (Q4 2020) for you!\nDisclaimer: this is an unofficial tool, we use a modified version of the software running on the official government website, but we waive any responsibility on the generated PDF. Please always double check them. \nPrivacy notice: we don't log any information and the generated PDF are not saved on our machiens after the telegram upload.\nIf you agree with this, send /help to see how to use the bot.\nEverything is open source and you are welcome to send contribution, feedback and bug reports: https://github.com/avivace/french-attestation-generator"
+        "Welcome! This bot will generate an attestation PDF (Q4 2020) for you!\n\nDisclaimer: this is an unofficial tool, we use a modified version of the software running on the official government website, but we waive any responsibility on the generated PDF. Please always double check them. By using this bot functionalities you acknowledge that the generated PDF are your and only yours responsibility. \n\nPrivacy notice: we don't log any information and the generated PDF are not saved on our machines but directly uploaded to Telegram. Messages and PDF uploaded in this conversation are anyway subject to Telegram terms of service and privacy terms. \n\nIf you agree with this, send /help to see how to use the bot.\n\nThis software is open source and you can easily self host your instance of this bot. You are welcome to send contributions, feedback and bug reports: https://github.com/avivace/french-attestation-generator"
     )
 );
 
 bot.help(ctx => {
-    ctx.reply(`Valid reasons:
-    travail
-    achats
-    sante
-    famille
-    handicap
-    sport_animaux
-    convocation
-    missions
-    enfants
-  
-    Example JSON:
-  
+    ctx.reply(`
+    To use the bot, send a JSON string similar to the following one, replacing placeholders with your data.  
+
     {
     "firstname": "Antuzzo",
     "lastname": "surname",
@@ -36,6 +26,18 @@ bot.help(ctx => {
     "reasons" : "sport_animaux"
     }
   
+    Tap /template to see a message with only this string so you can easily copy-paste it.
+
+    Valid reasons:
+        travail
+        achats
+        sante
+        famille
+        handicap
+        sport_animaux
+        convocation
+        missions
+        enfants
   
     More than one reason:
   
@@ -92,6 +94,7 @@ bot.command('template', ctx => {
     "zipcode": "01234",
     "datesortie": "13/11/2020",
     "heuresortie": "18:11",
+    "reasons": "travail"
   }`);
 });
 
