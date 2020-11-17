@@ -53,7 +53,7 @@ bot.command('reasons', ctx => {
         .filter(arg => arg !== '');
     const reasons = [];
     if (!args.length) {
-        for (const reason in Object.keys(gen.tableOfreasons)) {
+        for (const reason in Object.keys(gen.tableOfReasons)) {
             reasons.push(`${reason}: ${gen.tableOfReasons[reason]}`);
         }
         ctx.reply(reasons.join('\n'));
