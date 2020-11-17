@@ -3,7 +3,7 @@ const gen = require('./index');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-bot.start(ctx => ctx.reply('Welcome. Source code: https://github.com/avivace/french-attestation-generator'));
+bot.start(ctx => ctx.reply('Welcome! This bot will generate an attestation PDF (Q4 2020) for you!\nDisclaimer: this is an unofficial tool, we use a modified version of the software running on the official government website, but we waive any responsibility on the generated PDF. Please always double check them. \nPrivacy notice: we don\'t log any information and the generated PDF are not saved on our machiens after the telegram upload.\nIf you agree with this, send /help to see how to use the bot.\nEverything is open source and you are welcome to send contribution, feedback and bug reports: https://github.com/avivace/french-attestation-generator'));
 
 bot.help(ctx => {
     ctx.reply(`Valid reasons:
@@ -69,7 +69,7 @@ bot.command('reasons', ctx => {
                 reasons.push(`${arg}: ${gen.tableOfReasons[arg]}`);
             }
         }
-        ctx.reply(
+        ctx.replyWithMarkdown(
             reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
         );        
     } catch (err) {
