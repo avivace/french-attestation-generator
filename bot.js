@@ -103,6 +103,25 @@ bot.on('message', ctx => {
     try {
         obj = JSON.parse(ctx.message.text);
         reasons = obj.reasons;
+        if (!obj.hasOwnProperty("datesortie")){
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+
+            obj["datesortie"] = today
+            ctx.reply('You didn\'t specified a date. Using today ('+today+')');
+        }
+        if (!obj.hasOwnProperty("heuresortie")){
+            var today = new Date();
+            var hour = String(today.getHours()).padStart(2, '0');
+            var minute = String(today.getMinutes()).padStart(2, '0');
+            time = hour + ":" + minute
+            obj["heuresortie"] = time
+            ctx.reply('You didn\'t specified a time. Using now ('+time+')');
+        } 
         delete obj.reasons;
         ctx.reply('Looks like your JSON is valid. Generating PDF...');
     } catch (err) {
