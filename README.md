@@ -2,6 +2,8 @@
 
 A bot to generate Attestation de déplacement dérogatoire documents on the go, just by sending a telegram message.
 
+**DISCLAIMER: This is an unofficial bot. Therefore, the PDFs generated might not always be correct. Always check the generated PDF for errors before going out. We take no responsibility for any errors in the PDFs.**
+
 **Work In Progress Notice**: the bot UX is still raw and unforgiving. It expects a well formatted JSON stringified object and will break on syntax errors or missing keys.
 
 Install dependencies and run the Telegram bot:
