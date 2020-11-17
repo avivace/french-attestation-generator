@@ -72,6 +72,8 @@ fs.appendFileSync('attestation.pdf', new Buffer.from(attpdf));
 
 ### Acknowledgements
 
-Based on: https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020, https://media.interieur.gouv.fr/deplacement-covid-19/
+Developed by [Antonio Vivace](https://github.com/avivace) and [Tobias Wallstrom](https://github.com/TobiasWallstrom).
 
-English reasons explanations were taken from the official English version of the attestation, accessed from https://www.interieur.gouv.fr/Actualites/L-actu-du-Ministere/Attestations-de-deplacement on 2020/11/16
+Based on: https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020, https://media.interieur.gouv.fr/deplacement-covid-19/.
+
+English reasons explanations were taken from the official English version of the attestation, accessed from https://www.interieur.gouv.fr/Actualites/L-actu-du-Ministere/Attestations-de-deplacement on 2020/11/16.
