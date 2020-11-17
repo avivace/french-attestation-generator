@@ -71,7 +71,7 @@ bot.command('reasons', ctx => {
                 reasons.push(`${arg}: ${gen.tableOfReasons[arg]}`);
             }
         }
-        ctx.replyWithMarkdown(
+        ctx.reply(
             reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
         );        
     } catch (err) {
