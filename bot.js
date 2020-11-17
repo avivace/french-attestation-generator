@@ -48,28 +48,32 @@ bot.help(ctx => {
 
 bot.command('reasons', ctx => {
     try {
+        console.log(ctx.message.text)
         const args = ctx.message.text
             .split(' ')
             .slice(1)
             .filter(arg => arg !== '');
         const reasons = [];
+
         if (!args.length) {
-            for (const reason in Object.keys(gen.tableOfreasons)) {
+            for (const i in Object.keys(gen.tableOfReasons)) {
+                reason = Object.keys(gen.tableOfReasons)[i]
                 reasons.push(`${reason}: ${gen.tableOfReasons[reason]}`);
             }
             ctx.reply(reasons.join('\n'));
             return;
         }
-        for (const arg in args) {
+        for (const i in args) {
+            let arg = args[i]
             if (gen.tableOfReasons.hasOwnProperty(arg.toLowerCase())) {
                 reasons.push(`${arg}: ${gen.tableOfReasons[arg]}`);
             }
         }
         ctx.reply(
-            reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfreasons).join(', ')}`
+            reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
         );        
     } catch (err) {
-        ctx.reply('Error'+ err.message);
+        ctx.reply('Error '+ err.message);
     }
 
 });
