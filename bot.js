@@ -3,7 +3,11 @@ const gen = require('./index');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-bot.start(ctx => ctx.reply('Welcome! This bot will generate an attestation PDF (Q4 2020) for you!\nDisclaimer: this is an unofficial tool, we use a modified version of the software running on the official government website, but we waive any responsibility on the generated PDF. Please always double check them. \nPrivacy notice: we don\'t log any information and the generated PDF are not saved on our machiens after the telegram upload.\nIf you agree with this, send /help to see how to use the bot.\nEverything is open source and you are welcome to send contribution, feedback and bug reports: https://github.com/avivace/french-attestation-generator'));
+bot.start(ctx =>
+    ctx.reply(
+        "Welcome! This bot will generate an attestation PDF (Q4 2020) for you!\nDisclaimer: this is an unofficial tool, we use a modified version of the software running on the official government website, but we waive any responsibility on the generated PDF. Please always double check them. \nPrivacy notice: we don't log any information and the generated PDF are not saved on our machiens after the telegram upload.\nIf you agree with this, send /help to see how to use the bot.\nEverything is open source and you are welcome to send contribution, feedback and bug reports: https://github.com/avivace/french-attestation-generator"
+    )
+);
 
 bot.help(ctx => {
     ctx.reply(`Valid reasons:
@@ -48,7 +52,6 @@ bot.help(ctx => {
 
 bot.command('reasons', ctx => {
     try {
-
         const args = ctx.message.text
             .split(' ')
             .slice(1)
@@ -56,26 +59,26 @@ bot.command('reasons', ctx => {
         const reasons = [];
 
         if (!args.length) {
-            for (const i in Object.keys(gen.tableOfReasons)) {
-                reason = Object.keys(gen.tableOfReasons)[i]
+            Object.keys(gen.tableOfReasons).forEach(reason => {
                 reasons.push(`${reason}: ${gen.tableOfReasons[reason]}`);
-            }
+            });
             ctx.reply(reasons.join('\n'));
             return;
         }
         for (const i in args) {
-            let arg = args[i]
+            let arg = args[i];
             if (gen.tableOfReasons.hasOwnProperty(arg.toLowerCase())) {
                 reasons.push(`${arg}: ${gen.tableOfReasons[arg]}`);
             }
         }
         ctx.replyWithMarkdown(
-            reasons.length ? reasons.join('\n') : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
-        );        
+            reasons.length
+                ? reasons.join('\n')
+                : `Invalid reason. Following are valid reasons: ${Object.keys(gen.tableOfReasons).join(', ')}`
+        );
     } catch (err) {
-        ctx.reply('Error '+ err.message);
+        ctx.reply('Error ' + err.message);
     }
-
 });
 
 bot.command('template', ctx => {
