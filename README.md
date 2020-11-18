@@ -2,9 +2,14 @@
 
 A bot to generate Attestation de déplacement dérogatoire documents on the go, just by sending a telegram message.
 
-**DISCLAIMER: This is an unofficial bot. Therefore, the PDFs generated might not always be correct. Always check the generated PDF for errors before going out. We take no responsibility for any errors in the PDFs.**
+### DISCLAIMER 
+**This is an unofficial tool. Therefore, there is not guarantee that the generated PDF are correct or to be trusted. Always check the generated PDF for errors before going out. We take no responsibility for any errors in the PDFs. Using this software you acknoweledge that we waive any responsbility on the correctess of the generated certifications. USE THIS AT YOUR OWN RISK.**
 
 **Work In Progress Notice**: the bot UX is still raw and unforgiving. It expects a well formatted JSON stringified object and will break on syntax errors or missing keys.
+
+A public instance of the bot should be available at [@giovanniFaGenBot](https://t.me/giovanniFaGenBot) but self-hosting your own instance is quick and easy:
+
+### Telegram Bot
 
 Install dependencies and run the Telegram bot:
 
@@ -70,6 +75,7 @@ fs.appendFileSync('attestation.pdf', new Buffer.from(attpdf));
 
 ```
 
+Bot is powered by [Telegraf.js](https://telegraf.js.org)
 
 
 ### Acknowledgements
